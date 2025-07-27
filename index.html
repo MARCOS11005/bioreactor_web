@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biorreactor Gemelo</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Encabezado -->
+    <header class="top-bar">
+      <h1>Biorreactor Gemelo</h1>
+    </header>
+
+    <!-- Estado del sistema -->
+    <div class="status-banner">
+      Estado actual: <span id="modo">Automático</span>
+    </div>
+
+    <!-- Menú desplegable -->
+    <div class="dropdown-bar">
+      <label for="reactor-select">Selecciona simulación:</label>
+      <select id="reactor-select" class="dropdown">
+        <option value="ejemplo1">EJEMPLO #1</option>
+        <option value="ejemplo2">EJEMPLO #2</option>
+      </select>
+    </div>
+
+    <!-- Zona central con sensores e imagen -->
+    <div class="central-zone">
+      <div class="side-panel">
+        <div class="sensor-box">TEMPERATURA:<br /><span id="temp">123.4</span></div>
+        <div class="sensor-box">PRESIÓN:<br /><span id="pres">123.4</span></div>
+      </div>
+
+      <div class="image-container">
+        <img src="https://i.postimg.cc/wjJK1P8m/imagen-1.png" 
+             alt="Biorreactor" 
+             class="reactor-image" />
+      </div>
+
+      <div class="side-panel">
+        <div class="sensor-box">HUMEDAD:<br /><span id="hum">123.4</span></div>
+        <div class="sensor-box">PH:<br /><span id="ph">123.4</span></div>
+      </div>
+    </div>
+
+    <!-- Botones de control -->
+    <div class="button-row">
+      <button class="action-button" id="manual-btn">MANUAL</button>
+      <button class="action-button" id="auto-btn">MODO AUTO</button>
+
+      <!-- Controles que solo se muestran en modo manual -->
+      <div id="manual-controls" style="display: none;">
+        <button class="action-button">LUCES ON</button>
+        <button class="action-button">BOMBA ON</button>
+        <button class="action-button">APAGAR TODO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tu JS debe cargarse después de que la página esté lista -->
+  <script src="script.js" defer></script>
+</body>
+</html>
