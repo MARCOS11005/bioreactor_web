@@ -1,4 +1,4 @@
-const manualBtn = document.getElementById("manual-btn");
+    const manualBtn = document.getElementById("manual-btn");
     const autoBtn = document.getElementById("auto-btn");
     const manualControls = document.getElementById("manual-controls");
     const modoTexto = document.getElementById("modo");
@@ -12,3 +12,6 @@ const manualBtn = document.getElementById("manual-btn");
       manualControls.style.display = "none";
       modoTexto.textContent = "Automático";
     });
+    firebase.database().ref("sensores/temperatura").on("value", function(snapshot) {
+  document.getElementById("temp").textContent = snapshot.val().toFixed(1);
+});
