@@ -12,6 +12,6 @@
       manualControls.style.display = "none";
       modoTexto.textContent = "Automático";
     });
-    firebase.database().ref("sensores/temperatura").on("value", function(snapshot) {
+    firebase.database().ref("sensores/temp").on("value", function(snapshot) {
   document.getElementById("temp").textContent = snapshot.val().toFixed(1);
 });
