@@ -13,5 +13,10 @@
       modoTexto.textContent = "Automático";
     });
     firebase.database().ref("sensores/temp").on("value", function(snapshot) {
-  document.getElementById("temp").textContent = snapshot.val().toFixed(1);
+  const val = snapshot.val();
+  if (val !== null && val !== undefined) {
+    document.getElementById("temp").textContent = val.toFixed(1);
+  } else {
+    document.getElementById("temp").textContent = "No data";
+  }
 });
