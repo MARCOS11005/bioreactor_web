@@ -32,3 +32,4 @@ firebase.database().ref("sensores/ph").on("value", function(snapshot) {
   const val = snapshot.val();
   document.getElementById("ph").textContent = val !== null ? val.toFixed(1) : "No data";
 });
+
