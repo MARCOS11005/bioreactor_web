@@ -15,17 +15,17 @@ autoBtn.addEventListener("click", () => {
 
 firebase.database().ref("sensores/temperatura").on("value", function(snapshot) {
   const val = snapshot.val();
-  document.getElementById("temp").textContent = val !== null ? val.toFixed(1) : "No data";
+  document.getElementById("temperatura").textContent = val !== null ? val.toFixed(1) : "No data";
 });
 
 firebase.database().ref("sensores/presion").on("value", function(snapshot) {
   const val = snapshot.val();
-  document.getElementById("pres").textContent = val !== null ? val.toFixed(1) : "No data";
+  document.getElementById("presion").textContent = val !== null ? val.toFixed(1) : "No data";
 });
 
 firebase.database().ref("sensores/humedad").on("value", function(snapshot) {
   const val = snapshot.val();
-  document.getElementById("hum").textContent = val !== null ? val.toFixed(1) : "No data";
+  document.getElementById("humedad").textContent = val !== null ? val.toFixed(1) : "No data";
 });
 
 firebase.database().ref("sensores/ph").on("value", function(snapshot) {
