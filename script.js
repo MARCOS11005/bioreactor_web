@@ -13,6 +13,10 @@ autoBtn.addEventListener("click", () => {
   modoTexto.textContent = "Automático";
 });
 
+firebase.database().ref("sensores").on("value", function(snapshot) {
+  console.log("Snapshot completo de sensores:", snapshot.val());
+});
+
 firebase.database().ref("sensores/temperatura").on("value", function(snapshot) {
   const val = snapshot.val();
   document.getElementById("temperatura").textContent = val !== null ? val.toFixed(1) : "No data";
