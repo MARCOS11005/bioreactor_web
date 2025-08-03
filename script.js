@@ -13,27 +13,34 @@ autoBtn.addEventListener("click", () => {
   modoTexto.textContent = "Automático";
 });
 
-// Función segura para actualizar un valor si el elemento existe y el dato es válido
+let ultimaData = {};
+
 function actualizarElemento(id, valor) {
   const el = document.getElementById(id);
-  if (el) {
+  if (!el) {
+    console.warn(`⚠️ El elemento con id "${id}" no existe en el DOM`);
+    return;
+  }
+
+  // Evitar actualizar si el valor no cambió
+  if (ultimaData[id] !== valor) {
     if (valor !== null && !isNaN(valor)) {
       el.textContent = parseFloat(valor).toFixed(1);
     } else {
       el.textContent = "No data";
     }
-  } else {
-    console.warn(`⚠️ El elemento con id "${id}" no existe en el DOM`);
+    ultimaData[id] = valor;
   }
 }
 
-// Escuchar todos los sensores de una vez (opcional y eficiente)
 firebase.database().ref("sensores").on("value", function(snapshot) {
   const data = snapshot.val();
+  if (!data) return;
+  
   console.log("📦 Datos completos:", data);
 
-  actualizarElemento("temperatura", data?.temperatura);
-  actualizarElemento("presion", data?.presion);
-  actualizarElemento("humedad", data?.humedad);
-  actualizarElemento("ph", data?.ph);
+  actualizarElemento("temperatura", data.temperatura);
+  actualizarElemento("presion", data.presion);
+  actualizarElemento("humedad", data.humedad);
+  actualizarElemento("ph", data.ph);
 });
