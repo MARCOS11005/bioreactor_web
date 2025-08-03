@@ -13,27 +13,27 @@ autoBtn.addEventListener("click", () => {
   modoTexto.textContent = "Automático";
 });
 
+// Función segura para actualizar un valor si el elemento existe y el dato es válido
+function actualizarElemento(id, valor) {
+  const el = document.getElementById(id);
+  if (el) {
+    if (valor !== null && !isNaN(valor)) {
+      el.textContent = parseFloat(valor).toFixed(1);
+    } else {
+      el.textContent = "No data";
+    }
+  } else {
+    console.warn(`⚠️ El elemento con id "${id}" no existe en el DOM`);
+  }
+}
+
+// Escuchar todos los sensores de una vez (opcional y eficiente)
 firebase.database().ref("sensores").on("value", function(snapshot) {
-  console.log("Snapshot completo de sensores:", snapshot.val());
-});
+  const data = snapshot.val();
+  console.log("📦 Datos completos:", data);
 
-firebase.database().ref("sensores/temperatura").on("value", function(snapshot) {
-  const val = snapshot.val();
-  document.getElementById("temperatura").textContent = val !== null ? val.toFixed(1) : "No data";
+  actualizarElemento("temperatura", data?.temperatura);
+  actualizarElemento("presion", data?.presion);
+  actualizarElemento("humedad", data?.humedad);
+  actualizarElemento("ph", data?.ph);
 });
-
-firebase.database().ref("sensores/presion").on("value", function(snapshot) {
-  const val = snapshot.val();
-  document.getElementById("presion").textContent = val !== null ? val.toFixed(1) : "No data";
-});
-
-firebase.database().ref("sensores/humedad").on("value", function(snapshot) {
-  const val = snapshot.val();
-  document.getElementById("humedad").textContent = val !== null ? val.toFixed(1) : "No data";
-});
-
-firebase.database().ref("sensores/ph").on("value", function(snapshot) {
-  const val = snapshot.val();
-  document.getElementById("ph").textContent = val !== null ? val.toFixed(1) : "No data";
-});
-
