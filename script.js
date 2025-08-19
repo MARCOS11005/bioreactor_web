@@ -42,5 +42,10 @@ firebase.database().ref("sensores").on("value", function(snapshot) {
   actualizarElemento("temperatura", data.temperatura);
   actualizarElemento("presion", data.presion);
   actualizarElemento("humedad", data.humedad);
-  actualizarElemento("ph", data.ph);
+
+  const phEl = document.getElementById("ph");
+  if (phEl && data.ph !== null) {
+    phEl.textContent = data.ph + " s";   // ejemplo: "12 s"
+  }
+  
 });
